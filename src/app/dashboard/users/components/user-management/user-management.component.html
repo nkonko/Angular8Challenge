@@ -1,0 +1,16 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+      <li class="breadcrumb-item"><a routerLink="/dashboard/users">Users</a></li>
+      <li class="breadcrumb-item active" aria-current="page">User management</li>
+    </ol>
+  </nav>
+  <div class="card">
+    <div class="card-body p-relative">
+      <div class="loading-container" *ngIf="isLoading | async">
+        <div class="loader"></div>
+      </div>
+      <h5 class="card-title">Create new user</h5>
+      <h6 class="card-subtitle mb-2 text-muted">All fields with * are required</h6>      
+    </div>
+  </div>

@@ -1,0 +1,58 @@
+<div *ngIf="userList.length > 0">
+  <ngx-datatable
+    #userTable
+    class="material fullscreen"
+    [rows]="rows"
+    [columnMode]="'flex'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    rowHeight="auto"
+    [limit]="5"
+  >
+    <ngx-datatable-column name="First name" [flexGrow]="2">
+      <ng-template
+        let-rowIndex="rowIndex"
+        let-row="row"
+        ngx-datatable-cell-template
+      >
+          {{ row?.firstname | titlecase }}
+        </ng-template>
+      </ngx-datatable-column>
+
+    <ngx-datatable-column name="Last name" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.lastname | titlecase }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Username" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.username }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Email" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.email }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Role" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.role }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Birthday" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.birthday | date:'dd/MM/yyyy' }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [flexGrow]="1">
+      <ng-template ngx-datatable-cell-template>
+        <span class="material-icons">edit</span>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [flexGrow]="1">
+      <ng-template ngx-datatable-cell-template>
+        <span class="material-icons">delete</span>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
