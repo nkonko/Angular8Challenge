@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/shared/services/users.service';
-import { FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/shared/models/user';
 import { Subject } from 'rxjs';
@@ -33,6 +32,10 @@ export class UsersComponent implements OnInit {
 
   emitSearch(event) {
     this.searchSubject.next(event);
+  }
+
+  deleteUser(user) {
+    this.userService.delete(user);
   }
 
 }

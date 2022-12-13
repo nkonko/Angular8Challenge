@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
@@ -7,6 +8,7 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UsersDatatableComponent } from './components/users-datatable/users-datatable.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [UsersComponent, UserManagementComponent, UsersDatatableComponent],
@@ -14,7 +16,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     CommonModule,
     UsersRoutingModule,
     SharedModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    ModalModule.forRoot(),
+    ReactiveFormsModule
   ]
 })
 export class UsersModule { }

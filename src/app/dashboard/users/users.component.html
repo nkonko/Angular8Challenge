@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="row">
-      <app-users-datatable class="col" *ngIf="usersLoaded" [userList]="users" [searchValue]="searchSubject.asObservable()" ></app-users-datatable>
+      <app-users-datatable (userDeleted)="deleteUser($event)" class="col" *ngIf="usersLoaded" [userList]="users" [searchValue]="searchSubject.asObservable()" ></app-users-datatable>
     </div>
   </div>
 </div>

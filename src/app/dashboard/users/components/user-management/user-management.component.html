@@ -1,16 +1,85 @@
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-      <li class="breadcrumb-item"><a routerLink="/dashboard/users">Users</a></li>
-      <li class="breadcrumb-item active" aria-current="page">User management</li>
-    </ol>
-  </nav>
-  <div class="card">
-    <div class="card-body p-relative">
-      <div class="loading-container" *ngIf="isLoading | async">
-        <div class="loader"></div>
-      </div>
-      <h5 class="card-title">Create new user</h5>
-      <h6 class="card-subtitle mb-2 text-muted">All fields with * are required</h6>      
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+    <li class="breadcrumb-item"><a routerLink="/dashboard/users">Users</a></li>
+    <li class="breadcrumb-item active" aria-current="page">User management</li>
+  </ol>
+</nav>
+<div class="card">
+  <div class="card-body p-relative">
+    <div class="loading-container" *ngIf="isLoading | async">
+      <div class="loader"></div>
     </div>
+    <h5 class="card-title">{{title}} user: {{userName}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">All fields with * are required</h6>
   </div>
+
+  <div class="container">
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-4">
+          <label for="firstName">First name*</label>
+          <input class="form-control" type="text" formControlName="firstName" placeholder="First name"
+            [ngClass]="{'is-invalid': form.firstName.errors}">
+        </div>
+        <div class="col-4">
+          <label for="lastName">Last name*</label>
+          <input class="form-control" type="text" formControlName="lastName" placeholder="Last name"
+            [ngClass]="{'is-invalid': form.lastName.errors}">
+        </div>
+        <div class="col-4">
+          <label for="birthday">Birthday*</label>
+          <input class="form-control" type="date" formControlName="birthday" placeholder="02/10/2020"
+            [ngClass]="{'is-invalid': form.birthday.errors}">
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-4">
+          <label for="userName">Username*</label>
+          <input class="form-control" type="text" formControlName="userName" placeholder="Username"
+            [ngClass]="{'is-invalid': form.userName.errors}">
+        </div>
+        <div class="col-4">
+          <label for="email">Email*</label>
+          <input class="form-control" type="text" formControlName="email" placeholder="Email"
+            [ngClass]="{'is-invalid': form.email.errors}">
+        </div>
+        <div class="col-4">
+          <label for="roles">Roles*</label>
+          <select name="roles" class="form-control" formControlName="role">
+            <option value=""></option>
+            <option *ngFor="let role of roles">{{role}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-6">
+          <label for="password">Password*</label>
+          <input class="form-control" type="password" formControlName="password" placeholder="Password"
+            [ngClass]="{'is-invalid': form.password.errors}">
+        </div>
+        <div class="col-6">
+          <label for="repeatPassword">Repeat password*</label>
+          <input class="form-control" type="password" formControlName="repeatPassword" placeholder="Repeat password"
+            [ngClass]="{'is-invalid': form.repeatPassword.errors}">
+        </div>
+      </div>
+      <div class="row pt-4 mb-4 justify-content-between">
+        <div class="col-4">
+          <label for="">Skills</label>
+        </div>
+        <div class="col-4 text-right text-primary" >
+          <span>Add skill</span>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit" [disabled]="">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
