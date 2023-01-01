@@ -15,7 +15,7 @@
           <input class="form-control" placeholder="Search" (keyup)="emitSearch($event)">
         </div>
         <div class="col">
-          <button type="button" class="btn btn-primary" routerLink="user-management">Create new
+          <button type="button" class="btn btn-primary" [routerLink]="['user-management']" >Create new
             user</button>
         </div>
       </div>

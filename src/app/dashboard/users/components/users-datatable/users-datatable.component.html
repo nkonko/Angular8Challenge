@@ -46,7 +46,7 @@
     </ngx-datatable-column>
     <ngx-datatable-column [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        <a routerLink="user-management/{{row?.id}}/"><span class="material-icons">edit</span></a>
+        <a [routerLink]="['user-management',row?.id]" [state]="{data:{title:'Modify'}}"><span class="material-icons">edit</span></a>
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [flexGrow]="1">

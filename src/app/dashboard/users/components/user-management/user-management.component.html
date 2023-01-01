@@ -30,8 +30,8 @@
         </div>
         <div class="col-4">
           <label for="birthday">Birthday*</label>
-          <input class="form-control" type="date" formControlName="birthday" placeholder="02/10/2020"
-            [ngClass]="{'is-invalid': form.birthday.errors}">
+          <input class="form-control" formControlName="birthday" placeholder="02/10/2020"
+            [ngClass]="{'is-invalid': form.birthday.errors}" bsDatepicker>
         </div>
       </div>
       <div class="row pt-4">
@@ -42,18 +42,20 @@
         </div>
         <div class="col-4">
           <label for="email">Email*</label>
-          <input class="form-control" type="text" formControlName="email" placeholder="Email"
+          <input class="form-control" type="email" formControlName="email" placeholder="Email"
             [ngClass]="{'is-invalid': form.email.errors}">
         </div>
         <div class="col-4">
           <label for="roles">Roles*</label>
-          <select name="roles" class="form-control" formControlName="role">
-            <option value=""></option>
-            <option *ngFor="let role of roles">{{role}}</option>
-          </select>
+
+          <ng-select formControlName="role" (change)="changeFn(selection)">
+            <ng-option [value]=""></ng-option>
+            <ng-option *ngFor="let role of roles">{{role}}</ng-option>
+         </ng-select>
+
         </div>
       </div>
-      <div class="row pt-4">
+      <div class="row pt-4" *ngIf="!isUpdate">
         <div class="col-6">
           <label for="password">Password*</label>
           <input class="form-control" type="password" formControlName="password" placeholder="Password"

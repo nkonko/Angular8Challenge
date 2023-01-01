@@ -5,6 +5,7 @@ import { User } from "src/app/shared/models/user";
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { ConfirmModalComponent } from "src/app/shared/ui-components/confirm-modal/confirm-modal.component";
 
+
 @Component({
   selector: "app-users-datatable",
   templateUrl: "./users-datatable.component.html",
@@ -20,6 +21,7 @@ export class UsersDatatableComponent implements OnInit {
 
   rows = [];
   temp = [];
+
   constructor(private modalService: BsModalService) { }
 
   ngOnInit() {
@@ -70,6 +72,8 @@ export class UsersDatatableComponent implements OnInit {
       }
     });
   }
+
+
 
 }
 
