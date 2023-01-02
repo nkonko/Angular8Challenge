@@ -48,10 +48,10 @@
         <div class="col-4">
           <label for="roles">Roles*</label>
 
-          <ng-select formControlName="role" (change)="changeFn(selection)">
+          <ng-select formControlName="role">
             <ng-option [value]=""></ng-option>
             <ng-option *ngFor="let role of roles">{{role}}</ng-option>
-         </ng-select>
+          </ng-select>
 
         </div>
       </div>
@@ -71,8 +71,24 @@
         <div class="col-4">
           <label for="">Skills</label>
         </div>
-        <div class="col-4 text-right text-primary" >
-          <span>Add skill</span>
+        <div class="col-4 text-right text-primary">
+          <span (click)="addSkills()">Add skill</span>
+        </div>
+      </div>
+      <div class="row mb-4" *ngFor="let skill of skills.controls; let i = index;" formArrayName="skills">
+        <div class="col-4">
+          <input class="form-control" type="text" placeholder="Name" [ngClass]="{'is-invalid': form.password.errors}">
+        </div>
+        <div class="col-4">
+          <input class="form-control" type="text" placeholder="Description">
+        </div>
+        <div class="col-3">
+          <ng-select>
+            <ng-option [value]=""></ng-option>
+          </ng-select>
+        </div>
+        <div class="col-1">
+          <span class="text-primary" (click)="deleteSkills(i)">X</span>
         </div>
       </div>
       <div class="row mb-4">

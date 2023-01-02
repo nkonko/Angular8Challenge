@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormArray } from "@angular/forms";
 
 import { UsersService } from "src/app/shared/services/users.service";
 
@@ -29,7 +29,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if(history.state.data) {
+    if (history.state.data) {
       this.title = history.state.data.title;
       this.isUpdate = true;
     }
@@ -42,8 +42,17 @@ export class UserManagementComponent implements OnInit, OnDestroy {
       email: ['', [Validators.email, Validators.required]],
       role: ['', Validators.required],
       password: ['', [Validators.minLength(8), Validators.required]],
-      repeatPassword: ['', Validators.required]
-    },{validators: mustMatch, minimumAge });
+      repeatPassword: ['', Validators.required],
+      skills: this.formBuilder.array([])
+    }, { validators: mustMatch, minimumAge });
+  }
+
+  get form() {
+    return this.registerForm.controls;
+  }
+
+  get skills() {
+    return this.registerForm.get('skills') as FormArray;
   }
 
   onSubmit() {
@@ -61,7 +70,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
       email: this.registerForm.value.email,
       role: this.registerForm.value.role,
       password: this.registerForm.value.password,
-      skills: []
+      skills: this.skills.value
     }
 
     this.usersService.create(this.user);
@@ -72,11 +81,18 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     this.registerForm.reset();
   }
 
-  get form() {
-    return this.registerForm.controls;
+  addSkills() {
+    const skill = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: [''],
+      category: ['']
+    });
+
+    this.skills.push(skill);
   }
 
-  changeFn(selection) {
-    this.selectedRole = selection;
+  deleteSkills(index: number) {
+    this.skills.removeAt(index);
   }
+
 }
