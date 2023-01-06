@@ -21,29 +21,47 @@
         <div class="col-4">
           <label for="firstName">First name*</label>
           <input class="form-control" type="text" formControlName="firstName" placeholder="First name"
-            [ngClass]="{'is-invalid': form.firstName.errors}">
+            [ngClass]="{'is-invalid': form.firstName.touched && !form.firstName.valid}">
+            <div *ngIf="form.firstName.touched && !form.firstName.valid" class="invalid-feedback">
+              <span>FirstName is required</span>
+            </div>
         </div>
         <div class="col-4">
           <label for="lastName">Last name*</label>
           <input class="form-control" type="text" formControlName="lastName" placeholder="Last name"
-            [ngClass]="{'is-invalid': form.lastName.errors}">
+            [ngClass]="{'is-invalid': form.lastName.touched && !form.lastName.valid }">
+            <div *ngIf="form.lastName.touched && !form.lastName.valid" class="invalid-feedback">
+              <span>LastName is required</span>
+            </div>
         </div>
         <div class="col-4">
           <label for="birthday">Birthday*</label>
           <input class="form-control" formControlName="birthday" placeholder="02/10/2020"
-            [ngClass]="{'is-invalid': form.birthday.errors}" bsDatepicker>
+            [ngClass]="{'is-invalid': form.birthday.touched && !form.birthday.valid }" bsDatepicker>
+            <div *ngIf="form.birthday.touched && !form.birthday.valid" class="invalid-feedback">
+              <span>Birthday is required</span>
+            </div>
         </div>
       </div>
       <div class="row pt-4">
         <div class="col-4">
           <label for="userName">Username*</label>
           <input class="form-control" type="text" formControlName="userName" placeholder="Username"
-            [ngClass]="{'is-invalid': form.userName.errors}">
+            [ngClass]="{'is-invalid': form.userName.touched && !form.userName.valid }">
+            <div *ngIf="form.userName.touched && !form.userName.valid" class="invalid-feedback">
+              <span>Username is required</span>
+            </div>
         </div>
         <div class="col-4">
           <label for="email">Email*</label>
           <input class="form-control" type="email" formControlName="email" placeholder="Email"
-            [ngClass]="{'is-invalid': form.email.errors}">
+            [ngClass]="{'is-invalid': form.email.touched && !form.email.valid && !(form.email.value.length > 0) || form.email.errors && form.email.errors.email}">
+            <div *ngIf="form.email.touched && !form.email.valid && !(form.email.value.length > 0)" class="invalid-feedback">
+              <span>Email is required</span>
+            </div>
+            <div *ngIf="form.email.errors && form.email.errors.email" class="invalid-feedback">
+              <span>Check email format</span>
+            </div>
         </div>
         <div class="col-4">
           <label for="roles">Roles*</label>
@@ -59,12 +77,18 @@
         <div class="col-6">
           <label for="password">Password*</label>
           <input class="form-control" type="password" formControlName="password" placeholder="Password"
-            [ngClass]="{'is-invalid': form.password.errors}">
+            [ngClass]="{'is-invalid': form.password.touched && !form.password.valid}">
+            <div *ngIf="form.password.touched && !form.password.valid" class="invalid-feedback">
+              <span>Password is required</span>
+            </div>
         </div>
         <div class="col-6">
           <label for="repeatPassword">Repeat password*</label>
           <input class="form-control" type="password" formControlName="repeatPassword" placeholder="Repeat password"
-            [ngClass]="{'is-invalid': form.repeatPassword.errors}">
+            [ngClass]="{'is-invalid': form.repeatPassword.touched && !form.repeatPassword.valid}">
+            <div *ngIf="form.repeatPassword.touched && !form.repeatPassword.valid" class="invalid-feedback">
+              <span>Repeat password is required</span>
+            </div>
         </div>
       </div>
       <div class="row pt-4 mb-4 justify-content-between">
